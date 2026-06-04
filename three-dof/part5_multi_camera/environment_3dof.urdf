@@ -1,0 +1,125 @@
+<?xml version="1.0" ?>
+<robot name="table">
+
+    <material name="wood">
+        <color rgba="0.871 0.722 0.529 1"/>
+    </material>
+
+    <link name="base"/>
+
+    <joint name="joint_table_top" type="fixed">
+        <parent link="base"/>
+        <child link="table_top"/>
+        <origin xyz="0 0 1" rpy="0 0 0"/>
+    </joint>
+
+    <link name="table_top">
+        <visual>
+            <origin xyz="0 0 0"/>
+            <geometry><box size="0.5 1 0.01"/></geometry>
+            <material name="wood"/>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0"/>
+            <geometry><box size="0.5 1 0.01"/></geometry>
+        </collision>
+        <inertial>
+            <origin xyz="0 0 0"/>
+            <mass value="1.0"/>
+            <inertia ixx="0.083" iyy="0.021" izz="0.104" ixy="0.0" ixz="0.0" iyz="0.0"/>
+        </inertial>
+    </link>
+
+    <joint name="joint_table_leg1" type="fixed">
+        <parent link="table_top"/>
+        <child link="table_leg1"/>
+        <origin xyz="0.2 0.45 0" rpy="0 0 0"/>
+    </joint>
+
+    <link name="table_leg1">
+        <visual>
+            <origin xyz="0 0 -0.5"/>
+            <geometry><box size="0.1 0.1 1"/></geometry>
+            <material name="wood"/>
+        </visual>
+        <collision>
+            <origin xyz="0 0 -0.5"/>
+            <geometry><box size="0.1 0.1 1"/></geometry>
+        </collision>
+        <inertial>
+            <origin xyz="0 0 -0.5"/>
+            <mass value="2.0"/>
+            <inertia ixx="0.1683" iyy="0.1683" izz="0.0033" ixy="0.0" ixz="0.0" iyz="0.0"/>
+        </inertial>
+    </link>
+
+    <joint name="joint_table_leg2" type="fixed">
+        <parent link="table_top"/>
+        <child link="table_leg2"/>
+        <origin xyz="-0.2 0.45 0" rpy="0 0 0"/>
+    </joint>
+
+    <link name="table_leg2">
+        <visual>
+            <origin xyz="0 0 -0.5"/>
+            <geometry><box size="0.1 0.1 1"/></geometry>
+            <material name="wood"/>
+        </visual>
+        <collision>
+            <origin xyz="0 0 -0.5"/>
+            <geometry><box size="0.1 0.1 1"/></geometry>
+        </collision>
+        <inertial>
+            <origin xyz="0 0 -0.5"/>
+            <mass value="2.0"/>
+            <inertia ixx="0.1683" iyy="0.1683" izz="0.0033" ixy="0.0" ixz="0.0" iyz="0.0"/>
+        </inertial>
+    </link>
+
+    <joint name="joint_table_leg3" type="fixed">
+        <parent link="table_top"/>
+        <child link="table_leg3"/>
+        <origin xyz="-0.2 -0.45 0" rpy="0 0 0"/>
+    </joint>
+
+    <link name="table_leg3">
+        <visual>
+            <origin xyz="0 0 -0.5"/>
+            <geometry><box size="0.1 0.1 1"/></geometry>
+            <material name="wood"/>
+        </visual>
+        <collision>
+            <origin xyz="0 0 -0.5"/>
+            <geometry><box size="0.1 0.1 1"/></geometry>
+        </collision>
+        <inertial>
+            <origin xyz="0 0 -0.5"/>
+            <mass value="2.0"/>
+            <inertia ixx="0.1683" iyy="0.1683" izz="0.0033" ixy="0.0" ixz="0.0" iyz="0.0"/>
+        </inertial>
+    </link>
+
+    <joint name="joint_table_leg4" type="fixed">
+        <parent link="table_top"/>
+        <child link="table_leg4"/>
+        <origin xyz="0.2 -0.45 0" rpy="0 0 0"/>
+    </joint>
+
+    <link name="table_leg4">
+        <visual>
+            <origin xyz="0 0 -0.5"/>
+            <geometry><box size="0.1 0.1 1"/></geometry>
+            <material name="wood"/>
+        </visual>
+        <collision>
+            <origin xyz="0 0 -0.5"/>
+            <geometry><box size="0.1 0.1 1"/></geometry>
+        </collision>
+        <inertial>
+            <origin xyz="0 0 -0.5"/>
+            <mass value="2.0"/>
+            <inertia ixx="0.1683" iyy="0.1683" izz="0.0033" ixy="0.0" ixz="0.0" iyz="0.0"/>
+        </inertial>
+    </link>
+
+</robot>
