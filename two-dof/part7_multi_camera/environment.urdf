@@ -1,0 +1,40 @@
+<?xml version="1.0" ?>
+<robot name="camera_environment">
+
+
+    <link name="base">
+        <!-- 見た目，干渉判定，慣性はなし -->
+    </link>
+
+
+    <!-- 球を動かさないようのジョイント -->
+    <joint name="joint_sphere" type="fixed">
+
+        <parent link="base"/>
+        <child link="sphere"/>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+
+    </joint>
+
+
+    <!-- 球 -->
+    <link name="sphere">
+
+        <!-- 見た目 -->
+        <visual>
+            <origin xyz="1.0 -1.0 0.0"/>
+            <geometry>
+                <sphere radius="0.2"/>
+            </geometry>
+            <material name="blue">
+                <color rgba="0 0 1.0 0.5"/>
+            </material>
+        </visual>
+
+        <!-- 干渉判定，慣性はなし -->
+
+    </link>
+
+
+</robot>
+

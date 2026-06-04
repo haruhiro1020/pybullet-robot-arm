@@ -1,0 +1,38 @@
+<?xml version="1.0" ?>
+
+<robot name="camera_environment">
+
+
+    <link name="base">
+        <!-- 見た目，干渉判定，慣性はなし -->
+    </link>
+
+
+    <!-- カメラを動かさないためのジョイント -->
+    <joint name="camera_joint" type="fixed">
+
+        <parent link="base"/>
+        <child link="camera_link"/>
+        <origin xyz="0 0 0" rpy="3.1415926535 0 0"/>
+
+    </joint>
+
+
+    <!-- カメラの作成 -->
+    <link name="camera_link">
+
+        <!-- 見た目 -->
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <box size="0.1 0.1 0.1"/>
+            </geometry>
+        </visual>
+
+        <!-- 干渉判定，慣性はなし -->
+
+    </link>
+
+
+</robot>
+

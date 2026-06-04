@@ -1,0 +1,122 @@
+<?xml version="1.0" ?>
+<robot name="two_box_obstacles">
+
+
+    <link name="base">
+        <!-- 見た目，干渉判定，慣性はなし -->
+    </link>
+
+
+    <!-- 直方体を動かさないようのジョイント -->
+    <joint name="joint_box1" type="fixed">
+
+        <parent link="base"/>
+        <child link="box1"/>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+
+    </joint>
+
+
+    <!-- 直方体1 -->
+    <link name="box1">
+
+        <!-- 見た目 -->
+        <visual>
+            <origin xyz="1.8 0.5 0.0"/>
+            <geometry>
+                <box size="1.0 0.1 0.1"/>
+            </geometry>
+            <material name="black">
+                <color rgba="0 0 0 0.5"/>
+            </material>
+        </visual>
+
+        <!-- 干渉判定 -->
+        <collision>
+            <origin xyz="1.8 0.5 0.0"/>
+            <geometry>
+                <box size="1.0 0.1 0.1"/>
+            </geometry>
+        </collision>
+
+        <!-- 慣性行列 -->
+        <inertial>
+            <mass value="1.0" />
+            <inertia ixx="0.0017" iyy="0.0842" izz="0.0842" ixy="0.0" ixz="0.0" iyz="0.0"/>
+        </inertial>
+
+    </link>
+
+
+    <!-- 直方体を動かさないようのジョイント -->
+    <joint name="joint_box2" type="fixed">
+
+        <parent link="base"/>
+        <child link="box2"/>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+
+    </joint>
+
+
+    <!-- 直方体2 -->
+    <link name="box2">
+
+        <!-- 見た目 -->
+        <visual>
+            <origin xyz="0.0 -0.5 0.0"/>
+            <geometry>
+                <box size="1.0 0.1 0.1"/>
+            </geometry>
+            <material name="black">
+                <color rgba="0 0 0 0.5"/>
+            </material>
+        </visual>
+
+        <!-- 干渉判定 -->
+        <collision>
+            <origin xyz="0.0 -0.5 0.0"/>
+            <geometry>
+                <box size="1.0 0.1 0.1"/>
+            </geometry>
+        </collision>
+
+        <!-- 慣性行列 -->
+        <inertial>
+            <mass value="1.0" />
+            <inertia ixx="0.0017" iyy="0.0842" izz="0.0842" ixy="0.0" ixz="0.0" iyz="0.0"/>
+        </inertial>
+
+    </link>
+
+
+    <!-- 球を動かさないようのジョイント -->
+    <joint name="joint_sphere1" type="fixed">
+
+        <parent link="base"/>
+        <child link="sphere1"/>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+
+    </joint>
+
+
+    <!-- 球1 -->
+    <link name="sphere1">
+
+        <!-- 見た目 -->
+        <visual>
+            <origin xyz="1.0 -1.0 0.0"/>
+            <geometry>
+                <sphere radius="0.2"/>
+            </geometry>
+            <material name="blue">
+                <color rgba="0 0 1.0 0.5"/>
+            </material>
+        </visual>
+
+        <!-- 干渉判定，慣性はなし -->
+
+    </link>
+
+
+</robot>
+

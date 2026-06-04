@@ -1,0 +1,16 @@
+<?xml version="1.0" ?>
+<robot name="camera_front_to_back">
+    <link name="base"/>
+    <joint name="camera_joint" type="fixed">
+        <parent link="base"/>
+        <child link="camera_link"/>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+    </joint>
+    <link name="camera_link">
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry><box size="0.1 0.1 0.1"/></geometry>
+            <material name="black"><color rgba="0 0 0 1"/></material>
+        </visual>
+    </link>
+</robot>
