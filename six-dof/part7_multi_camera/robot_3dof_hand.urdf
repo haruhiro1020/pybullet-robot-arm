@@ -1,0 +1,328 @@
+<?xml version="1.0"?>
+<robot name="robot_3dof_hand">
+
+    <!-- 色を先に定義 (共通化したいから) ↓ -->
+    <material name="black">
+        <color rgba="0 0 0 1"/>
+    </material>
+    <!-- 色を先に定義 (共通化したいから) ↑ -->
+
+
+    <!-- ベースリンク -->
+    <link name="base_link">
+        <!-- 見た目，干渉判定，慣性なし -->
+    </link>
+
+
+    <!-- ベースリンクとリンク1間の関節 -->
+    <joint name="joint1" type="revolute">
+
+        <parent link="base_link"/>
+        <child link="link1"/>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <axis xyz="0 0 1"/>
+        <limit lower="-3.14" upper="3.14" effort="100" velocity="5.0"/>
+
+    </joint>
+
+
+    <!-- リンク1 -->
+    <link name="link1">
+
+        <!-- 見た目 -->
+        <visual>
+            <origin xyz="0.0 0.0 0.5"/>
+            <geometry>
+                <box size="0.2 0.2 1.0"/>
+            </geometry>
+        </visual>
+
+        <!-- 干渉判定 -->
+        <collision>
+            <origin xyz="0.0 0.0 0.5"/>
+            <geometry>
+                <box size="0.2 0.2 1.0"/>
+            </geometry>
+        </collision>
+
+        <!-- 慣性行列 -->
+        <inertial>
+            <origin xyz="0.0 0.0 0.5"/>
+            <!-- 質量は適当 -->
+            <mass value="1.0"/>
+            <inertia ixx="0.08667" iyy="0.08667" izz="0.00667" ixy="0.0" ixz="0.0" iyz="0.0"/>
+        </inertial>
+
+    </link>
+
+
+    <!-- リンク1とリンク2間の関節 -->
+    <joint name="joint2" type="revolute">
+
+        <parent link="link1"/>
+        <child link="link2"/>
+        <origin xyz="0 0 1.0" rpy="0 0 0"/>
+        <axis xyz="0 1 0"/>
+        <limit lower="-3.14" upper="3.14" effort="100" velocity="5.0"/>
+
+    </joint>
+
+
+    <!-- リンク2 -->
+    <link name="link2">
+
+        <!-- 見た目 -->
+        <visual>
+            <origin xyz="0.0 0.0 0.5"/>
+            <geometry>
+                <box size="0.2 0.2 1.0"/>
+            </geometry>
+        </visual>
+
+        <!-- 干渉判定 -->
+        <collision>
+            <origin xyz="0.0 0.0 0.5"/>
+            <geometry>
+                <box size="0.2 0.2 1.0"/>
+            </geometry>
+        </collision>
+
+        <!-- 慣性行列 -->
+        <inertial>
+            <origin xyz="0.0 0.0 0.5"/>
+            <!-- 質量は適当 -->
+            <mass value="1.0"/>
+            <inertia ixx="0.08667" iyy="0.08667" izz="0.00667" ixy="0.0" ixz="0.0" iyz="0.0"/>
+        </inertial>
+
+    </link>
+
+
+    <!-- リンク2とリンク3間の関節 -->
+    <joint name="joint3" type="revolute">
+
+        <parent link="link2"/>
+        <child link="link3"/>
+        <origin xyz="0 0 1.0" rpy="0 0 0"/>
+        <axis xyz="0 1 0"/>
+        <limit lower="-3.14" upper="3.14" effort="100" velocity="5.0"/>
+
+    </joint>
+
+
+    <!-- リンク3 -->
+    <link name="link3">
+
+        <!-- 見た目 -->
+        <visual>
+            <origin xyz="0.0 0.0 0.5"/>
+            <geometry>
+                <box size="0.2 0.2 1.0"/>
+            </geometry>
+        </visual>
+
+        <!-- 干渉判定 -->
+        <collision>
+            <origin xyz="0.0 0.0 0.5"/>
+            <geometry>
+                <box size="0.2 0.2 1.0"/>
+            </geometry>
+        </collision>
+
+        <!-- 慣性行列 -->
+        <inertial>
+            <origin xyz="0.0 0.0 0.5"/>
+            <!-- 質量は適当 -->
+            <mass value="1.0"/>
+            <inertia ixx="0.08667" iyy="0.08667" izz="0.00667" ixy="0.0" ixz="0.0" iyz="0.0"/>
+        </inertial>
+
+    </link>
+
+
+    <!-- リンク3とグリッパー間の関節 -->
+    <joint name="gripper_joint" type="fixed">
+
+        <parent link="link3"/>
+        <child link="gripper_base_link"/>
+        <origin xyz="0 0 1.0" rpy="0 0 0"/>
+
+    </joint>
+
+
+    <!-- グリッパーのベース部分 -->
+    <!-- グリッパーはT字型とする -->
+    <!-- T字型の縦棒作成 -->
+    <link name="gripper_base_link">
+
+        <!-- 見た目 -->
+        <visual>
+            <origin xyz="0 0 0.1" rpy="0 0 0"/>
+            <geometry>
+                <box size="0.1 0.1 0.2"/>
+            </geometry>
+            <material name="black"/>
+        </visual>
+
+        <!-- 干渉判定 -->
+        <visual>
+            <origin xyz="0 0 0.1" rpy="0 0 0"/>
+            <geometry>
+                <box size="0.1 0.1 0.2"/>
+            </geometry>
+            <material name="black"/>
+        </visual>
+
+        <!-- 慣性 -->
+        <inertial>
+            <mass value="0.05"/>
+            <origin xyz="0 0 0.1" rpy="0 0 0"/>
+            <inertia ixx="0.000208" iyy="0.000208" izz="0.000083" ixy="0.0" ixz="0.0" iyz="0.0"/>
+        </inertial>
+
+    </link>
+
+
+    <!-- グリッパーとフィンガー間の関節 -->
+    <joint name="finger_joint" type="fixed">
+
+        <parent link="gripper_base_link"/>
+        <child link="gripper_finger_link"/>
+        <origin xyz="0 0 0.2" rpy="0 0 0"/>
+
+    </joint>
+
+
+    <!-- T字型の横棒作成 -->
+    <link name="gripper_finger_link">
+
+        <!-- 見た目 -->
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <box size="0.2 0.2 0.1"/>
+            </geometry>
+            <material name="black"/>
+        </visual>
+
+        <!-- 干渉判定 -->
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <box size="0.2 0.2 0.1"/>
+            </geometry>
+        </collision>
+
+        <!-- 慣性 -->
+        <inertial>
+            <mass value="0.1"/>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <inertia ixx="0.000417" iyy="0.000417" izz="0.000667" ixy="0.0" ixz="0.0" iyz="0.0"/>
+        </inertial>
+
+    </link>
+
+
+    <!-- フィンガーと右フィンガー間の関節 -->
+    <joint name="right_finger_joint" type="prismatic">
+
+        <parent link="gripper_finger_link"/>
+        <child link="right_finger_link"/>
+        <origin xyz="-0.095 0 0.05" rpy="0 0 0"/>
+        <axis xyz="1 0 0"/>
+        <limit lower="0.0" upper="0.090" effort="100.0" velocity="1.0"/>
+
+    </joint>
+
+
+    <!-- 右フィンガー -->
+    <link name="right_finger_link">
+
+        <!-- 見た目 -->
+        <visual>
+            <origin xyz="0.0 0.0 0.15"/>
+            <geometry>
+                <box size="0.01 0.2 0.3"/>
+            </geometry>
+            <material name="black"/>
+        </visual>
+
+        <!-- 干渉判定 -->
+        <collision>
+            <origin xyz="0.0 0.0 0.15"/>
+            <geometry>
+                <box size="0.01 0.2 0.3"/>
+            </geometry>
+        </collision>
+
+        <!-- 慣性行列 -->
+        <inertial>
+            <origin xyz="0.0 0.0 0.15"/>
+            <mass value="0.015"/>
+            <inertia ixx="0.000163" iyy="0.000113" izz="0.000051" ixy="0.0" ixz="0.0" iyz="0.0"/>
+        </inertial>
+
+    </link>
+
+
+    <!-- ハンドベースと左フィンガー間の関節 -->
+    <joint name="left_finger_joint" type="prismatic">
+
+        <parent link="gripper_finger_link"/>
+        <child link="left_finger_link"/>
+        <origin xyz="0.095 0 0.05" rpy="0 0 0"/>
+        <axis xyz="1 0 0"/>
+        <limit lower="-0.090" upper="0.0" effort="100.0" velocity="1.0"/>
+
+    </joint>
+
+
+    <!-- 左グリッパー -->
+    <link name="left_finger_link">
+
+        <!-- 見た目 -->
+        <visual>
+            <origin xyz="0.0 0.0 0.15"/>
+            <geometry>
+                <box size="0.01 0.2 0.3"/>
+            </geometry>
+            <material name="black"/>
+        </visual>
+
+        <!-- 干渉判定 -->
+        <collision>
+            <origin xyz="0.0 0.0 0.15"/>
+            <geometry>
+                <box size="0.01 0.2 0.3"/>
+            </geometry>
+        </collision>
+
+        <!-- 慣性行列 -->
+        <inertial>
+            <origin xyz="0.0 0.0 0.15"/>
+            <mass value="0.015"/>
+            <inertia ixx="0.000163" iyy="0.000113" izz="0.000051" ixy="0.0" ixz="0.0" iyz="0.0"/>
+        </inertial>
+
+    </link>
+
+
+    <!-- フィンガーと先端 (エンドエフェクター) 間の関節 -->
+    <joint name="ee_joint" type="fixed">
+
+        <parent link="gripper_finger_link"/>
+        <child link="ee_link"/>
+        <origin xyz="0 0 0.3" rpy="0 0 0"/>
+
+    </joint>
+
+
+    <!-- グリッパー先端 (エンドエフェクタ) -->
+    <link name="ee_link">
+        <!-- 見た目，干渉判定，慣性はなし -->
+    </link>
+
+
+</robot>
+
+

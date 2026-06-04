@@ -1,7 +1,7 @@
 # PyBulletによるロボットアームシミュレーション — ソースコード
 
 PyBullet（Python向け物理シミュレータ）を使ってロボットアームを動かすシミュレーションのソースコードです。
-2軸ロボットアームを対象に、関節角度制御・逆運動学・経路計画（RRT / RRT-Connect / RRT*）・物体把持・カメラ認識まで段階的に実装しています。
+2軸・3軸・6軸ロボットアームを対象に、関節角度制御・逆運動学・経路計画（RRT / RRT-Connect / RRT*）・物体把持・カメラ認識まで段階的に実装しています。
 
 ---
 
@@ -9,13 +9,29 @@ PyBullet（Python向け物理シミュレータ）を使ってロボットアー
 
 ```
 src/
-└── two-dof/                   # 2軸ロボットアーム（7パート）
+├── two-dof/                   # 2軸ロボットアーム（7パート）
+│   ├── part1_joint/           # 関節角度制御
+│   ├── part2_position/        # 逆運動学による手先位置制御
+│   ├── part3_rrt/             # RRTによる衝突回避経路計画
+│   ├── part4_grasp/           # グリッパーによる物体把持
+│   ├── part5_rrt_grasp/       # RRTを用いた物体把持の経路計画
+│   ├── part6_single_camera/   # 単眼カメラによる物体位置推定と把持
+│   └── part7_multi_camera/    # 多眼カメラによるロバストな物体把持
+│
+├── three-dof/                 # 3軸ロボットアーム（5パート）
+│   ├── part1_joint/           # 関節角度制御
+│   ├── part2_position/        # 逆運動学による手先位置制御
+│   ├── part3_rrt/             # RRTによる衝突回避経路計画
+│   ├── part4_rrt_grasp/       # RRTを用いた物体把持の経路計画
+│   └── part5_multi_camera/    # 多眼カメラによるロバストな物体把持
+│
+└── six-dof/                   # 6軸ロボットアーム（7パート）
     ├── part1_joint/           # 関節角度制御
-    ├── part2_position/        # 逆運動学による手先位置制御
+    ├── part2_position/        # 逆運動学による手先位置・姿勢制御
     ├── part3_rrt/             # RRTによる衝突回避経路計画
-    ├── part4_grasp/           # グリッパーによる物体把持
-    ├── part5_rrt_grasp/       # RRTを用いた物体把持の経路計画
-    ├── part6_single_camera/   # 単眼カメラによる物体位置推定と把持
+    ├── part4_rrt_grasp/       # RRTを用いた物体把持の経路計画
+    ├── part5_rrt_connect_grasp/ # RRT-Connectによる高速把持経路計画
+    ├── part6_rrt_star_grasp/  # RRT*による最適把持経路計画
     └── part7_multi_camera/    # 多眼カメラによるロバストな物体把持
 ```
 
@@ -35,6 +51,31 @@ src/
 
 ---
 
+## 3軸ロボットアーム (three-dof)
+
+| パート | 内容 |
+|---|---|
+| [part1_joint](three-dof/part1_joint/) | 関節角度制御 |
+| [part2_position](three-dof/part2_position/) | 逆運動学による手先位置制御 |
+| [part3_rrt](three-dof/part3_rrt/) | RRTによる衝突回避経路計画 |
+| [part4_rrt_grasp](three-dof/part4_rrt_grasp/) | RRTを用いた物体把持の経路計画 |
+| [part5_multi_camera](three-dof/part5_multi_camera/) | 多眼カメラによるロバストな物体把持 |
+
+---
+
+## 6軸ロボットアーム (six-dof)
+
+| パート | 内容 |
+|---|---|
+| [part1_joint](six-dof/part1_joint/) | 関節角度制御 |
+| [part2_position](six-dof/part2_position/) | 逆運動学による手先位置・姿勢制御 |
+| [part3_rrt](six-dof/part3_rrt/) | RRTによる衝突回避経路計画 |
+| [part4_rrt_grasp](six-dof/part4_rrt_grasp/) | RRTを用いた物体把持の経路計画 |
+| [part5_rrt_connect_grasp](six-dof/part5_rrt_connect_grasp/) | RRT-Connectによる高速把持経路計画 |
+| [part6_rrt_star_grasp](six-dof/part6_rrt_star_grasp/) | RRT*による最適把持経路計画 |
+| [part7_multi_camera](six-dof/part7_multi_camera/) | 多眼カメラによるロバストな物体把持 |
+
+---
 
 ## 動作環境
 
